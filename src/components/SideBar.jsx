@@ -1,8 +1,16 @@
 import React from "react";
+import { useContext } from "react";
+import { formContext } from "../context/formProvider";
+import NoteForm from "./NoteForm";
 
-function SideBar(props) {
+function SideBar() {
+  const { showForm, toggleForm } = useContext(formContext);
+
+  const handleCreateForm = () => {
+    toggleForm(!showForm);
+  };
   return (
-    <div style={{ height: "100vh", width: "22vw", backgroundColor: "#fff" }}>
+    <div style={{ height: "100vh", width: "25vw", backgroundColor: "#fff" }}>
       <h1 style={{ fontSize: "1.5rem", color: "black", margin: "1.5rem 1rem" }}>
         Pocket Notes
       </h1>
@@ -27,6 +35,7 @@ function SideBar(props) {
             borderRadius: "50px",
             fontSize: "1rem",
           }}
+          onClick={handleCreateForm}
         >
           + Create Notes group
         </button>
@@ -83,6 +92,7 @@ function SideBar(props) {
           <span>JavaScript grp</span>
         </div>
       </div>
+      <NoteForm />
     </div>
   );
 }

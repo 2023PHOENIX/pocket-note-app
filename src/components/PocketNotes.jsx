@@ -7,14 +7,15 @@ function PocketNotes(props) {
       style={{
         backgroundColor: "#F7ECDC",
         height: "100vh",
-        width: "80vw",
+        width: "75vw",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "flex-start",
+        justifyContent: "center",
         alignItems: "center",
-        paddingTop: "100px",
+        paddingBottom: "80px",
         gap: "40px",
         position: "relative",
+        fontSize: "1.2rem",
       }}
     >
       <div>
