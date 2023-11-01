@@ -1,0 +1,14 @@
+.groupBox {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.groupIcon {
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

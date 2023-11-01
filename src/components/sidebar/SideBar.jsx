@@ -1,14 +1,30 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { formContext } from "../../context/formProvider";
 import NoteForm from "../noteform/NoteForm";
+import Styles from "./SideBar.module.css";
+import { useEffect } from "react";
+import { chatGroupContext } from "../../context/chatGroupProvider";
 
 function SideBar() {
   const { showForm, toggleForm } = useContext(formContext);
-
+  const { chatGroup, handleChatGroup } = useContext(chatGroupContext);
+  const [groupData, setGroupData] = useState(
+    JSON.parse(localStorage.getItem("group"))
+  );
+  // useEffect(() => {
+  //   setGroupData(JSON.parse(localStorage.getItem("group")));
+  // }, [groupData]);
+  // console.log(groupData)
   const handleCreateForm = () => {
     toggleForm(!showForm);
   };
+
+  const handleChatGroupUpdate = (key) => {
+    // console.log(key);
+    handleChatGroup(key);
+  };
+
   return (
     <div style={{ height: "100vh", width: "25vw", backgroundColor: "#fff" }}>
       <h1 style={{ fontSize: "1.5rem", color: "black", margin: "1.5rem 1rem" }}>
@@ -40,59 +56,28 @@ function SideBar() {
           + Create Notes group
         </button>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <div
-            style={{
-              backgroundColor: "blue",
-              borderRadius: "50%",
-              height: "45px",
-              width: "45px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            CU
-          </div>
+        {groupData?.map((group) => {
+          // const groupData = Object.entries(group);
+          const key = Object.keys(group)[0];
+          // console.log(key, group[key]);
+          return (
+            <div
+              className={Styles.groupBox}
+              onClick={() => handleChatGroupUpdate(key)}
+            >
+              <div
+                className={Styles.groupIcon}
+                style={{ backgroundColor: group[key] }}
+              >
+                {key.slice(0, 2)}
+              </div>
+              <span>{Object.keys(group)}</span>
+            </div>
+          );
+        })}
 
-          <span>Cuvette Notes</span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <div
-            style={{
-              backgroundColor: "#B38BFA",
-              borderRadius: "50%",
-              height: "45px",
-              width: "45px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            MG
-          </div>
-
-          <span>My Personal Group</span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <div
-            style={{
-              backgroundColor: "#FFC0C0",
-              borderRadius: "50%",
-              height: "45px",
-              width: "45px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            JS
-          </div>
-
-          <span>JavaScript grp</span>
-        </div>
+        <NoteForm setGroupData={setGroupData} />
       </div>
-      <NoteForm />
     </div>
   );
 }

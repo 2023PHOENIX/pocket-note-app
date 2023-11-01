@@ -7,7 +7,7 @@ import Styles from "./NoteForm.module.css";
 // ! can do groupname : [name,hex code ] can be option
 // & but giving group : {key : value pair} is good option
 // & has groupname : hex code
-function NoteForm() {
+function NoteForm({setGroupData}) {
   const { showForm, toggleForm } = useContext(formContext);
 
   const [formChoice, setChoice] = useState({
@@ -23,6 +23,7 @@ function NoteForm() {
       GROUP.push({ [formChoice.groupName]: formChoice.colorCode });
 
       localStorage.setItem("group", JSON.stringify(GROUP));
+      setGroupData(GROUP);
     }
     toggleForm();
   };

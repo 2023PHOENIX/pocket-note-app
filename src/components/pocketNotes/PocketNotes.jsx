@@ -1,7 +1,10 @@
 import React from "react";
 import PocketImage from "../../assets/pocket-image.png";
 import LockIcon from "../../assets/lock-icon.svg";
+import { chatGroupContext } from "../../context/chatGroupProvider";
 function PocketNotes(props) {
+  
+  
   return (
     <div
       style={{
