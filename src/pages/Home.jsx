@@ -1,6 +1,6 @@
 import React from 'react';
-import SideBar from '../components/SideBar';
-import PocketNotes from '../components/PocketNotes';
+import SideBar from '../components/sidebar/SideBar';
+import PocketNotes from '../components/pocketNotes/PocketNotes';
 import { useContext } from 'react';
 import { formContext } from '../context/formProvider';
 

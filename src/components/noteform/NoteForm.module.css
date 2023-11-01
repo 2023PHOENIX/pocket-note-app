@@ -1,0 +1,11 @@
+.formWrapper {
+    width: 500px;
+    height: 200px;
+    flex-shrink: 0;
+    z-index: 7;
+    border-radius: 6px;
+    background-color: #FFF;
+    position: fixed;
+    left: 35%;
+    top: 30%;
+}

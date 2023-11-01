@@ -1,6 +1,6 @@
 import React from "react";
-import PocketImage from "../assets/pocket-image.png";
-import LockIcon from "../assets/lock-icon.svg";
+import PocketImage from "../../assets/pocket-image.png";
+import LockIcon from "../../assets/lock-icon.svg";
 function PocketNotes(props) {
   return (
     <div

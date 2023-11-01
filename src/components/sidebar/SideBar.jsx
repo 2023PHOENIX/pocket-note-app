@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
-import { formContext } from "../context/formProvider";
-import NoteForm from "./NoteForm";
+import { formContext } from "../../context/formProvider";
+import NoteForm from "../noteform/NoteForm";
 
 function SideBar() {
   const { showForm, toggleForm } = useContext(formContext);
