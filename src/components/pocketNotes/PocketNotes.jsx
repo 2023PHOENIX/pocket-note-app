@@ -3,14 +3,12 @@ import PocketImage from "../../assets/pocket-image.png";
 import LockIcon from "../../assets/lock-icon.svg";
 import { chatGroupContext } from "../../context/chatGroupProvider";
 function PocketNotes(props) {
-  
-  
   return (
     <div
       style={{
         backgroundColor: "#F7ECDC",
         height: "100vh",
-        width: "75vw",
+        width: "68vw",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",

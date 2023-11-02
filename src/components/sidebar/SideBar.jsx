@@ -21,12 +21,11 @@ function SideBar() {
   };
 
   const handleChatGroupUpdate = (key) => {
-    // console.log(key);
     handleChatGroup(key);
   };
 
   return (
-    <div style={{ height: "100vh", width: "25vw", backgroundColor: "#fff" }}>
+    <div style={{ height: "100vh", width: "32vw", backgroundColor: "#fff" }}>
       <h1 style={{ fontSize: "1.5rem", color: "black", margin: "1.5rem 1rem" }}>
         Pocket Notes
       </h1>
