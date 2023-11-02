@@ -1,10 +1,10 @@
 import React from "react";
 import { useContext, useState } from "react";
-import { formContext } from "../../context/FormProvider";
+import { formContext } from "./../../context/FormProvider.jsx";
 import NoteForm from "../noteform/NoteForm";
 import Styles from "./SideBar.module.css";
 import { useEffect } from "react";
-import { chatGroupContext } from "../../context/chatGroupProvider";
+import { chatGroupContext } from "./../../context/ChatGroupProvider.jsx";
 
 function SideBar() {
   const { showForm, toggleForm } = useContext(formContext);

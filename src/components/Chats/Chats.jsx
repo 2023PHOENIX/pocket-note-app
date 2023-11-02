@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from "react";
 import {useState,useContext} from "react";
-import {chatGroupContext} from "../../context/chatGroupProvider";
+import {chatGroupContext} from "../../context/ChatGroupProvider.jsx";
 import EnterButton from "../../assets/enter-icon.svg";
 import ChatStyles from "./chats.module.css";
 
