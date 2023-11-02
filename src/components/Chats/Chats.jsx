@@ -1,25 +1,74 @@
-import React, {useEffect, useRef} from "react";
-import {useState,useContext} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import {chatGroupContext} from "../../context/ChatGroupProvider.jsx";
 import EnterButton from "../../assets/enter-icon.svg";
 import ChatStyles from "./chats.module.css";
 
 function Chats() {
 
-    const [inputChat,setInputChat] = useState(null);
+    const [inputChat, setInputChat] = useState(null);
     const {chatGroup} = useContext(chatGroupContext);
+
+
+    const [chatData, setChatData] = useState(null);
+    console.log(chatData);
+    //! chatRef =>  to scroll to the bottom of page
     const chatContainerRef = useRef();
+
+
     useEffect(() => {
+
+
         chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    }, []);
+        const {currentGroupChats} = getCurrentGroupData();
+        setChatData(currentGroupChats);
+
+    }, [chatGroup]);
 
     const handleInputChange = (e) => {
+
         setInputChat(e.target.value);
     }
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSubmit();
+        }
+    }
 
+    const getCurrentGroupData = () => {
+
+        const chatGroupKey = chatGroup.replace(" ", "_");
+        const ChatDB = JSON.parse(localStorage.getItem('chats')) || {};
+        const currentGroupChats = ChatDB[chatGroupKey] || [];
+        return {currentGroupChats, chatGroupKey, ChatDB};
+    }
+
+    // * handling submit from the user text. and updating on the chat window.
     const handleSubmit = () => {
 
-        console.log('chat recieved',inputChat);
+        setInputChat("");
+        const {currentGroupChats, ChatDB, chatGroupKey} = getCurrentGroupData();
+
+
+        // ? send the meta data also like DATE TIME
+        const date = new Date();
+        const currentDateString = date.getDate() + " " + date.toLocaleString('en-US', {
+            month: 'long',
+        }).slice(0, 3) + " " + date.getFullYear();
+        const time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+        currentGroupChats.push({
+            "chatData": inputChat,
+            "metaData": {
+                "date": currentDateString,
+                "time": time
+            }
+        });
+
+        ChatDB[chatGroupKey] = currentGroupChats;
+        localStorage.setItem('chats', JSON.stringify(ChatDB));
+        setChatData(ChatDB[chatGroupKey]);
+        console.log(JSON.parse(localStorage.getItem(('chats'))));
     }
     return (
 
@@ -30,72 +79,28 @@ function Chats() {
             </heading>
             <div className={ChatStyles.main}>
                 <div className={ChatStyles.messagesWrapper} ref={chatContainerRef}>
-                    <div className={ChatStyles.message}>
-                        <div className={ChatStyles.dateTime}>
-                            <div>10:10 Am</div>
-                            <div>9 March 2023</div>
-                        </div>
+                    {chatData?.map((data) => {
+                        return (<div className={ChatStyles.message}>
+                            <div className={ChatStyles.dateTime}>
+                                <div>{data.metaData.time}</div>
+                                <div>{data.metaData.date}</div>
+                            </div>
+                            <div className={ChatStyles.chatText}>
+                                {data.chatData}
+                            </div>
 
-                        <div className={ChatStyles.chatText}>
-                            Another productive way to use this tool to begin a daily writing routine. One way is to
-                            generate a random paragraph with the intention to try to rewrite it while still keeping the
-                            original meaning. The purpose here is to just get the writing started so that when the
-                            writer goes onto their day's writing projects, words are already flowing from their fingers.
-                        </div>
-
-
-                    </div>
-                    <div className={ChatStyles.message}>
-                        <div className={ChatStyles.dateTime}>
-                            <div>10:10 Am</div>
-                            <div>9 March 2023</div>
-                        </div>
-
-                        <div className={ChatStyles.chatText}>
-                            It's not only writers who can benefit from this free online tool. If you're a programmer
-                            who's working on a project where blocks of text are needed, this tool can be a great way to
-                            get that. It's a good way to test your programming and that the tool being created is
-                            working well.
-                        </div>
-
-
-                    </div>
-                    <div className={ChatStyles.message}>
-                        <div className={ChatStyles.dateTime}>
-                            <div>10:10 Am</div>
-                            <div>9 March 2023</div>
-                        </div>
-
-                        <div className={ChatStyles.chatText}>
-                            When first building this generator we thought about using computers to generate the
-                            paragraphs, but they weren't very good and many times didn't make any sense at all. We
-                            therefore took the time to create paragraphs specifically for this generator to make it the
-                            best that we could.
-                        </div>
-
-
-                    </div>
-                    <div className={ChatStyles.message}>
-                        <div className={ChatStyles.dateTime}>
-                            <div>10:10 Am</div>
-                            <div>9 March 2023</div>
-                         </div>
-
-                        <div className={ChatStyles.chatText}>
-                            When first building this generator we thought about using computers to generate the
-                            paragraphs, but they weren't very good and many times didn't make any sense at all. We
-                            therefore took the time to create paragraphs specifically for this generator to make it the
-                            best that we could.
-                        </div>
-
-
-                    </div>
+                        </div>)
+                    })}
                 </div>
-                <div className={ChatStyles.inputWrapper} >
-                    <textarea type='text' className={ChatStyles.input} placeholder="Enter your text here" onChange={handleInputChange}/>
-                        <button className={ChatStyles.buttonEnter} onClick={handleSubmit}>
-                            <img src={EnterButton}/>
-                        </button>
+                <div className={ChatStyles.inputWrapper}>
+                    <textarea type='text' className={ChatStyles.input} placeholder="Enter your text here"
+                              onChange={handleInputChange}
+                              onKeyPress={handleKeyPress}
+                              value={inputChat}
+                    />
+                    <button className={ChatStyles.buttonEnter} onClick={handleSubmit}>
+                        <img src={EnterButton}/>
+                    </button>
                 </div>
             </div>
 

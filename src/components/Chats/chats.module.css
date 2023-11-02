@@ -82,6 +82,7 @@
 }
 
 .input {
+
     height: 22vh;
     width: 96%;
     border-radius: 9px;
@@ -90,7 +91,7 @@
     padding: 20px;
     margin: 10px;
     font-size: 1.5rem;
-
+    resize: none;
 }
 
 .input::placeholder {

@@ -22,6 +22,7 @@ function SideBar() {
 
   const handleChatGroupUpdate = (key) => {
     handleChatGroup(key);
+    console.log(chatGroup);
   };
 
   return (
