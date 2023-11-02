@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext, useState } from "react";
-import { formContext } from "../../context/formProvider";
+import { formContext } from "../../context/FormProvider";
 import NoteForm from "../noteform/NoteForm";
 import Styles from "./SideBar.module.css";
 import { useEffect } from "react";

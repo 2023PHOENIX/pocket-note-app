@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext, useState } from "react";
-import { formContext } from "../../context/formProvider";
+import { formContext } from "../../context/FormProvider";
 import Styles from "./NoteForm.module.css";
 
 // ? how should schema should look like

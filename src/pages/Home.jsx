@@ -2,8 +2,8 @@ import React from "react";
 import SideBar from "../components/sidebar/SideBar";
 import PocketNotes from "../components/pocketNotes/PocketNotes";
 import { useContext } from "react";
-import { formContext } from "../context/formProvider";
-import { chatGroupContext } from "../context/chatGroupProvider";
+import { formContext } from "../context/FormProvider.jsx";
+import { chatGroupContext } from "../context/ChatGroupProvider.jsx";
 import Chats from "../components/Chats/Chats";
 function Home() {
   const { showForm } = useContext(formContext);
