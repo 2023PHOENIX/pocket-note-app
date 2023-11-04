@@ -59,7 +59,6 @@
 
 @media (max-width : 900px){
     .sidebar-wrapper{
-        background-color: yellow;
         width: 100%;
     }
 }

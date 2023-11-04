@@ -2,6 +2,7 @@ import React from "react";
 import { useContext, useState } from "react";
 import { formContext } from "../../context/FormProvider.jsx";
 import Styles from "./NoteForm.module.css";
+import { useRef } from "react";
 
 // ? how should schema should look like
 // ! can do groupname : [name,hex code ] can be option
@@ -9,12 +10,18 @@ import Styles from "./NoteForm.module.css";
 // & has groupname : hex code
 function NoteForm({ setGroupData }) {
   const { showForm, toggleForm } = useContext(formContext);
-
   const [formChoice, setChoice] = useState({
     groupName: "",
     colorCode: "",
   });
+
+
   const handleSubmit = () => {
+
+    if (formChoice.groupName.trim() === "") {
+      toggleForm();
+      return;
+    }
     const GROUP = JSON.parse(localStorage.getItem("group")) || [];
 
     const groupExist = GROUP.some((gp) => formChoice.groupName in gp);

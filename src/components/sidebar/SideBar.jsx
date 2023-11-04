@@ -60,7 +60,10 @@ function SideBar() {
             </div>
           );
         })}
+        <div style={{backgroundColor :"pink",width : "100%"}}>
+
           <NoteForm setGroupData={setGroupData} />
+        </div>
       </div>
     </div>
   );

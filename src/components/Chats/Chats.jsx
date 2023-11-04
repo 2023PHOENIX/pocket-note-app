@@ -7,9 +7,11 @@ import { screenContext } from "../../context/ScreenSizeProvider.jsx";
 
 function Chats() {
   const [inputChat, setInputChat] = useState(null);
-  const { chatGroup,handleChatGroup } = useContext(chatGroupContext);
+  const { chatGroup, handleChatGroup } = useContext(chatGroupContext);
 
   const [chatData, setChatData] = useState(null);
+
+  const [groupColor, setGroupColor] = useState(null);
 
   const { isMobile } = useContext(screenContext);
   // console.log(chatData);
@@ -17,10 +19,23 @@ function Chats() {
   const chatContainerRef = useRef();
 
   useEffect(() => {
-    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    const groupStore = JSON.parse(localStorage.getItem("group"));
+
+    const objGroup = groupStore.find((g) => {
+      return g.hasOwnProperty(chatGroup);
+    });
+    console.log(objGroup);
+
+    setGroupColor(objGroup[chatGroup]);
+  }, []);
+  useEffect(() => {
     const { currentGroupChats } = getCurrentGroupData();
     setChatData(currentGroupChats);
   }, [chatGroup]);
+
+  useEffect(() => {
+    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  });
 
   const handleInputChange = (e) => {
     setInputChat(e.target.value);
@@ -46,18 +61,24 @@ function Chats() {
 
     // ? send the meta data also like DATE TIME
     const date = new Date();
-    const currentDateString = date.getDate() + " " +
-      date.toLocaleString("en-US", {
-        month: "long",
-      }).slice(0, 3) + " " + date.getFullYear();
-    const time = date.getHours() + ":" + date.getMinutes() + ":" +
-      date.getSeconds();
+    const currentDateString =
+      date.getDate() +
+      " " +
+      date
+        .toLocaleString("en-US", {
+          month: "long",
+        })
+        .slice(0, 3) +
+      " " +
+      date.getFullYear();
+    const time =
+      date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
     currentGroupChats.push({
-      "chatData": inputChat,
-      "metaData": {
-        "date": currentDateString,
-        "time": time,
+      chatData: inputChat,
+      metaData: {
+        date: currentDateString,
+        time: time,
       },
     });
 
@@ -68,10 +89,13 @@ function Chats() {
   };
   return (
     <div className={ChatStyles.wrapper}>
-
       <heading className={ChatStyles.heading}>
-        {isMobile && <img onClick={() => handleChatGroup("")}  src={BackButton }/> }       
-        <span>{chatGroup.slice(0, 2)}</span>
+        {isMobile && (
+          <img onClick={() => handleChatGroup("")} src={BackButton} />
+        )}
+        <span style={{ backgroundColor: groupColor }}>
+          {chatGroup.slice(0, 2)}
+        </span>
         {chatGroup}
       </heading>
       <div className={ChatStyles.main}>
@@ -83,9 +107,7 @@ function Chats() {
                   <div>{data.metaData.time}</div>
                   <div>{data.metaData.date}</div>
                 </div>
-                <div className={ChatStyles.chatText}>
-                  {data.chatData}
-                </div>
+                <div className={ChatStyles.chatText}>{data.chatData}</div>
               </div>
             );
           })}

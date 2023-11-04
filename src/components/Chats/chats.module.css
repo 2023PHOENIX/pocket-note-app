@@ -124,3 +124,20 @@
     width: 55vw;
 }
 
+@media (max-width : 500px){
+    .messagesWrapper{
+        font-size: 0.8rem;
+    }
+    .dateTime{
+        width: 35%;
+    }
+
+    .input{
+        font-size: 1rem;
+        margin : 35px;
+    }
+    .buttonEnter img{
+        right : 3rem;
+        bottom : 2rem;
+    }
+}
