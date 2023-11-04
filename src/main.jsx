@@ -16,3 +16,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </ScreenSizeProvider>
   </FormProvider>
 );
+
+
+
+
+/* // TODO: First change the circle color according to choice
+   !2 : text size change according to screen size 
+   ^ put constraint on creating the group should be atleast 2 letter long. 
+*/
