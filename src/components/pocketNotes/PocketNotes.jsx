@@ -1,27 +1,15 @@
 import React from "react";
 import PocketImage from "../../assets/pocket-image.png";
 import LockIcon from "../../assets/lock-icon.svg";
-
+import PocketStyles from "./pocketnotes.module.css"
 function PocketNotes() {
     return (
         <div
-            style={{
-                backgroundColor: "#F7ECDC",
-                height: "100vh",
-                width: "68vw",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                paddingBottom: "80px",
-                gap: "40px",
-                position: "relative",
-                fontSize: "1.2rem",
-            }}
+        className={PocketStyles['wrapper-home']}
         >
             <div>
                 <img
-                    style={{width: "37.5rem", height: "16rem"}}
+                    className={PocketStyles['wrapper-img']}
                     src={PocketImage}
                     alt="pocket notes"
                 />
@@ -32,7 +20,7 @@ function PocketNotes() {
                 <br></br>
                 Use Pocket Notes on up to 4 linked devices and 1 mobile phone
             </div>
-            <span style={{bottom: "20px", position: "absolute"}}>
+            <span className={PocketStyles['wrapper-footer']}>
         <img src={LockIcon}/> end-to-end encrypted
       </span>
         </div>

@@ -7,7 +7,7 @@ import Styles from "./NoteForm.module.css";
 // ! can do groupname : [name,hex code ] can be option
 // & but giving group : {key : value pair} is good option
 // & has groupname : hex code
-function NoteForm({setGroupData}) {
+function NoteForm({ setGroupData }) {
   const { showForm, toggleForm } = useContext(formContext);
 
   const [formChoice, setChoice] = useState({
@@ -46,35 +46,13 @@ function NoteForm({setGroupData}) {
     <div>
       {showForm && (
         <div className={Styles.formWrapper}>
-          <h1 style={{ padding: "20px", fontSize: "22px" }}>
-            Create New Notes group
-          </h1>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-              padding: "0px 35px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                gap: "20px",
-                justifyContent: "flex-start",
-                alignItems: "center",
-              }}
-            >
+          <h1 className={Styles["form-heading"]}>Create New Notes group</h1>
+          <div className={Styles["form-main-section"]}>
+            <div className={Styles["group-input"]}>
               <p style={{ fontWeight: "bold" }}>Group Name</p>
               <input
                 onChange={handleGroupName}
-                style={{
-                  border: "2px solid #CCC",
-                  borderRadius: "20px",
-                  textIndent: "10px",
-                  width: "300px",
-                  height: "30px",
-                }}
+                className={Styles["group-input-box"]}
               />
             </div>
             <div style={{ display: "flex", gap: "20px" }}>
@@ -88,60 +66,46 @@ function NoteForm({setGroupData}) {
                 }}
               >
                 <div
-                  style={{
-                    height: "25px",
-                    width: "25px",
-                    borderRadius: "50%",
-                    backgroundColor: "#B38BFA",
-                  }}
+                  className={Styles["color-circle"]}
+                  style={{ backgroundColor: "#B38BFA" }}
                   name="#B38BFA"
                   onClick={handleColorPick}
                 ></div>
                 <div
+                  className={Styles["color-circle"]}
                   style={{
-                    height: "25px",
-                    width: "25px",
-                    borderRadius: "50%",
                     backgroundColor: "#FF79F2",
                   }}
                   name="#FF79F2"
                   onClick={handleColorPick}
                 ></div>
                 <div
+                  className={Styles["color-circle"]}
                   style={{
-                    height: "25px",
-                    width: "25px",
-                    borderRadius: "50%",
                     backgroundColor: "#43E6FC",
                   }}
                   name="#43E6FC"
                   onClick={handleColorPick}
                 ></div>
                 <div
+                  className={Styles["color-circle"]}
                   style={{
-                    height: "25px",
-                    width: "25px",
-                    borderRadius: "50%",
                     backgroundColor: "#F19576",
                   }}
                   name="#F19576"
                   onClick={handleColorPick}
                 ></div>
                 <div
+                  className={Styles["color-circle"]}
                   style={{
-                    height: "25px",
-                    width: "25px",
-                    borderRadius: "50%",
                     backgroundColor: "#0047FF",
                   }}
                   name="#0047FF"
                   onClick={handleColorPick}
                 ></div>
                 <div
+                  className={Styles["color-circle"]}
                   style={{
-                    height: "25px",
-                    width: "25px",
-                    borderRadius: "50%",
                     backgroundColor: "#6691FF",
                   }}
                   name="#6691FF"
@@ -151,18 +115,7 @@ function NoteForm({setGroupData}) {
             </div>
           </div>
 
-          <button
-            style={{
-              backgroundColor: "black",
-              borderRadius: "8px",
-              color: "white",
-              padding: "5px 30px",
-              position: "absolute",
-              right: "10px",
-              bottom: "10px",
-            }}
-            onClick={handleSubmit}
-          >
+          <button className={Styles["submit-button"]} onClick={handleSubmit}>
             Create
           </button>
         </div>

@@ -26,36 +26,22 @@ function SideBar() {
   };
 
   return (
-    <div style={{ height: "100vh", width: "32vw", backgroundColor: "#fff" }}>
-      <h1 style={{ fontSize: "1.5rem", color: "black", margin: "1.5rem 1rem" }}>
+    <div className={Styles['sidebar-wrapper']}>
+      <h1 className={Styles['sidebar-heading']}>
         Pocket Notes
       </h1>
 
       <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          gap: "30px",
-          marginLeft: "2rem",
-          fontSize: "1rem",
-          fontWeight: "500",
-        }}
+        className={Styles.sidebar}
       >
         <button
-          style={{
-            width: "15rem",
-            height: "2rem",
-            color: "white",
-            backgroundColor: "black",
-            borderRadius: "50px",
-            fontSize: "1rem",
-          }}
+          className={Styles['button-create-group']}
           onClick={handleCreateForm}
         >
           + Create Notes group
         </button>
 
+       
         {groupData?.map((group) => {
           // const groupData = Object.entries(group);
           const key = Object.keys(group)[0];
@@ -75,8 +61,7 @@ function SideBar() {
             </div>
           );
         })}
-
-        <NoteForm setGroupData={setGroupData} />
+          <NoteForm setGroupData={setGroupData} />
       </div>
     </div>
   );
