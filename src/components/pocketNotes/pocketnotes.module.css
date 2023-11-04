@@ -24,3 +24,10 @@
     bottom: 20px;
     position: absolute;
 }
+
+
+@media (max-width : 900px){
+    .wrapper-home{
+        display: none;
+    }
+}

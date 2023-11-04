@@ -54,3 +54,12 @@
     border-radius: 50px;
     font-size: 1rem;
 }
+
+
+
+@media (max-width : 900px){
+    .sidebar-wrapper{
+        background-color: yellow;
+        width: 100%;
+    }
+}

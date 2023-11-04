@@ -2,13 +2,17 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { chatGroupContext } from "../../context/ChatGroupProvider.jsx";
 import EnterButton from "../../assets/enter-icon.svg";
 import ChatStyles from "./chats.module.css";
+import BackButton from "../../assets/back.svg";
+import { screenContext } from "../../context/ScreenSizeProvider.jsx";
 
 function Chats() {
   const [inputChat, setInputChat] = useState(null);
-  const { chatGroup } = useContext(chatGroupContext);
+  const { chatGroup,handleChatGroup } = useContext(chatGroupContext);
 
   const [chatData, setChatData] = useState(null);
-  console.log(chatData);
+
+  const { isMobile } = useContext(screenContext);
+  // console.log(chatData);
   //! chatRef =>  to scroll to the bottom of page
   const chatContainerRef = useRef();
 
@@ -64,7 +68,9 @@ function Chats() {
   };
   return (
     <div className={ChatStyles.wrapper}>
+
       <heading className={ChatStyles.heading}>
+        {isMobile && <img onClick={() => handleChatGroup("")}  src={BackButton }/> }       
         <span>{chatGroup.slice(0, 2)}</span>
         {chatGroup}
       </heading>

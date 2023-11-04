@@ -5,12 +5,14 @@ import App from "./App.jsx";
 import "./index.css";
 import FormProvider from "./context/FormProvider.jsx";
 import ChatGroupProvider from "./context/ChatGroupProvider.jsx";
+import ScreenSizeProvider from "./context/ScreenSizeProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <FormProvider>
-
-    <ChatGroupProvider>
-    <App />
-    </ChatGroupProvider> 
+    <ScreenSizeProvider>
+      <ChatGroupProvider>
+        <App />
+      </ChatGroupProvider>
+    </ScreenSizeProvider>
   </FormProvider>
 );
