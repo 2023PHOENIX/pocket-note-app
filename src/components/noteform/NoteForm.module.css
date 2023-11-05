@@ -15,7 +15,7 @@
 
 
 .form-heading {
-    padding: 20px;
+    padding: 20px 30px;
     font-size: 1.2rem;
 }
 
@@ -89,7 +89,7 @@
         /* left: 5%; */
         width: 350px;
         margin :auto;
-        font-size: 0.9rem;
+        font-size: 1rem;
         top : 50%;
         left : 50%;
         transform: translate(-50%,-50%);
@@ -98,11 +98,22 @@
     
 
     .group-input-box {
-        width: 150px;
+        width: 160px;
+     
+    }
+    .group-input-box::placeholder{
+        font-size: 0.7rem;
     }
     .color-circle{
         height: 15px;
         width: 15px;
     }
+
+  .submit-button{
+    left : 50%;
+    bottom : 1%;
+    transform: translate(-50%,-50%);
+    padding : 5px 20px;
+  }
    
 }

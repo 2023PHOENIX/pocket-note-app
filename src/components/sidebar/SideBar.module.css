@@ -9,17 +9,19 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 30px;
+
     margin-left: 2rem;
     font-size: 1rem;
     font-weight: 500;
 }
 
 .sidebar-heading {
-
+    
     font-size: 1.5rem;
     color: 'black';
     margin: 1.5rem 1rem;
+    padding-left: 20px;
+    
 }
 
 .sidebar-wrapper::-webkit-scrollbar {
@@ -28,12 +30,11 @@
 }
 
 
-
-
 .groupBox {
     display: flex;
     align-items: center;
     gap: 20px;
+    padding-left: 20px;
 }
 
 .groupIcon {
@@ -53,8 +54,9 @@
     background-color: black;
     border-radius: 50px;
     font-size: 1rem;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
-
 
 
 @media (max-width : 900px){

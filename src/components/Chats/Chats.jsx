@@ -24,10 +24,9 @@ function Chats() {
     const objGroup = groupStore.find((g) => {
       return g.hasOwnProperty(chatGroup);
     });
-    console.log(objGroup);
 
     setGroupColor(objGroup[chatGroup]);
-  }, []);
+  }, [chatGroup]);
   useEffect(() => {
     const { currentGroupChats } = getCurrentGroupData();
     setChatData(currentGroupChats);

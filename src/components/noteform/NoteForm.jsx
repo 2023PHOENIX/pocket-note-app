@@ -58,6 +58,7 @@ function NoteForm({ setGroupData }) {
             <div className={Styles["group-input"]}>
               <p style={{ fontWeight: "bold" }}>Group Name</p>
               <input
+                placeholder="   Enter your group name..."
                 onChange={handleGroupName}
                 className={Styles["group-input-box"]}
               />
@@ -67,9 +68,9 @@ function NoteForm({ setGroupData }) {
               <div
                 style={{
                   display: "flex",
-                  gap: "6px",
+                  gap: "8px",
                   justifyContent: "center",
-                  alignItems: "center",
+                  alignItems: "baseline",
                 }}
               >
                 <div
