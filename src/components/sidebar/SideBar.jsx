@@ -29,7 +29,10 @@ function SideBar() {
 
   return (
     <div className={Styles["sidebar-wrapper"]}>
-      <h1 className={Styles["sidebar-heading"]}>Pocket Notes</h1>
+      <h1 className={Styles["sidebar-heading"]}
+      
+      onClick={() => {handleChatGroup("")}}
+      >Pocket Notes</h1>
 
       <div className={Styles.sidebar}>
         <button
@@ -43,7 +46,6 @@ function SideBar() {
           // const groupData = Object.entries(group);
           const key = Object.keys(group)[0];
 
-          console.log(isMobile);
           const specialStyle = !isMobile
             ? {
                 backgroundColor: chatGroup === key ? "#F7ECDC" : "",

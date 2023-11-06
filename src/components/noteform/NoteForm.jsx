@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { formContext } from "../../context/FormProvider.jsx";
 import Styles from "./NoteForm.module.css";
 import { useRef } from "react";
+import { useEffect } from "react";
 
 // ? how should schema should look like
 // ! can do groupname : [name,hex code ] can be option
@@ -15,10 +16,33 @@ function NoteForm({ setGroupData }) {
     colorCode: "",
   });
 
+  const formRef = useRef();
+
+  const handleClickOutSide = (e) => {
+    try {
+      console.log(formRef);
+      if (formRef.current && !formRef.current.contains(e.target)) {
+        toggleForm();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    if (showForm) {
+      document.addEventListener("mousedown", handleClickOutSide);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutSide);
+    };
+  }, [showForm, toggleForm]);
 
   const handleSubmit = () => {
-
-    if (formChoice.groupName.trim() === "") {
+    if (formChoice.groupName.trim() === "" || formChoice.colorCode === "") {
+      // toggleForm();
+      toggleForm();
       toggleForm();
       return;
     }
@@ -32,8 +56,11 @@ function NoteForm({ setGroupData }) {
       localStorage.setItem("group", JSON.stringify(GROUP));
       setGroupData(GROUP);
     }
+
+    toggleForm();
     toggleForm();
   };
+
   const handleGroupName = (e) => {
     setChoice((prev) => ({
       ...prev,
@@ -52,13 +79,13 @@ function NoteForm({ setGroupData }) {
   return (
     <div>
       {showForm && (
-        <div className={Styles.formWrapper}>
+        <div className={Styles.formWrapper} ref={formRef}>
           <h1 className={Styles["form-heading"]}>Create New Notes group</h1>
           <div className={Styles["form-main-section"]}>
             <div className={Styles["group-input"]}>
               <p style={{ fontWeight: "bold" }}>Group Name</p>
               <input
-                placeholder="   Enter your group name..."
+                placeholder="Enter your group name..."
                 onChange={handleGroupName}
                 className={Styles["group-input-box"]}
               />

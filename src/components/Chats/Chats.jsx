@@ -55,6 +55,8 @@ function Chats() {
 
   // * handling submit from the user text. and updating on the chat window.
   const handleSubmit = () => {
+    if (inputChat.trim() === "") return;
+
     setInputChat("");
     const { currentGroupChats, ChatDB, chatGroupKey } = getCurrentGroupData();
 
@@ -71,8 +73,10 @@ function Chats() {
       " " +
       date.getFullYear();
     const time =
-      date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-
+      date.getHours() +
+      ":" +
+      (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
+ 
     currentGroupChats.push({
       chatData: inputChat,
       metaData: {
